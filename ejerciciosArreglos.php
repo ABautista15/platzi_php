@@ -2,6 +2,7 @@
     $str = '';
     $arreglo = [
         'keyStr1' => 'lado',
+        'keyStr3' => 'rueba',
         0 => 'ledo',
         'keyStr2' => 'lido',
         1 => 'lodo',
