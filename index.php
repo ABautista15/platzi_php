@@ -1,21 +1,39 @@
 <?php 
   $edad = 24;
   $name = "Adrian Bautista Orozco";
+  include_once "./Jobs.php";
+
+  $job1 = new Job();
+  $job1->title = 'PHP Developer';
+  $job1->description = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi sapiente sed pariatur sint exercitationem eos expedita eveniet veniam ullam, quia neque facilis dicta voluptatibus. Eveniet doloremque ipsum itaque obcaecati nihil.';
+  $job1->visible = true;
+  $job1->months = 16;
   
   $jobs = [
-    [
-      'title' => 'PHP Developer',
-      'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi sapiente sed pariatur sint exercitationem eos expedita eveniet veniam ullam, quia neque facilis dicta voluptatibus. Eveniet doloremque ipsum itaque obcaecati nihil.'
-    ],
-    [
-      'title' => 'Python Developer',
-      'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi sapiente sed pariatur sint exercitationem eos expedita eveniet veniam ullam, quia neque facilis dicta voluptatibus. Eveniet doloremque ipsum itaque obcaecati nihil.'
-    ],
-    [
-      'title' => 'Devops',
-      'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi sapiente sed pariatur sint exercitationem eos expedita eveniet veniam ullam, quia neque facilis dicta voluptatibus. Eveniet doloremque ipsum itaque obcaecati nihil.'
-    ]
+    $job1
   ];
+  function getDuration($months){
+    $years = floor($months/12);
+    $extraMonths = $months%12;
+
+    return "$years years $extraMonths months";
+  }
+  
+  function printJob($job){
+    if($job->visible){
+      echo '<li class="work-position">';
+      echo '<h5>'.$job->title.'</h5>';
+      echo '<p>'.$job->description.'</p>';
+      echo '<p>'.getDuration($job->months).'</p>';
+      echo '<strong>Achievements:</strong>';
+      echo '<ul>';
+      echo '<li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>';
+      echo '<li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>';
+      echo '<li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>';
+      echo '</ul>';
+      echo '</li>';
+    }
+  }
 
   
 ?>
@@ -66,18 +84,17 @@
         <div>
           <h3 class="border-bottom-gray">Work Experience</h3>
           <ul>
-            <?php for($idx = 0;$idx < count($jobs);$idx++):?>
-              <li class="work-position">
-                <h5><?php echo $jobs[$idx]['title'];?></h5>
-                <p><?php echo $jobs[$idx]['description'];?></p>
-                <strong>Achievements:</strong>
-                <ul>
-                  <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
-                  <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
-                  <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
-                </ul>
-              </li>
-            <?php endfor;?>
+            <?php 
+              $totalMonths = 0;
+              for($idx = 0;$idx < count($jobs);$idx++){
+                $totalMonths += $jobs[$idx]->months;
+                if($totalMonths > 50){
+                  break;
+                }
+                printJob($jobs[$idx]);
+              }?>
+                
+            
           </ul>
         </div>
         <div>
