@@ -1,5 +1,7 @@
 <?php
-    require 'app/Models/Job.php';
+
+    use App\Models\Job;
+    require_once 'vendor/autoload.php';
     $job1 = new Job("PHP Developer","Hola mundo");
   
     $job1->visible = true;

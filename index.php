@@ -2,7 +2,8 @@
   $edad = 24;
   $name = "Adrian Bautista Orozco";
   
-  require 'jobs.php';
+  
+  require_once 'jobs.php';
 
   
 

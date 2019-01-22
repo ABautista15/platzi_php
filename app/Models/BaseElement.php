@@ -1,4 +1,5 @@
 <?php
+    namespace App\Models;
     class BaseElement {
         private $title;
         public $description;
