@@ -1,12 +1,26 @@
 <?php 
-  $edad = 24;
-  $name = "Adrian Bautista Orozco";
   
+    require_once 'vendor/autoload.php';
   
-  require_once 'jobs.php';
+    use Illuminate\Database\Capsule\Manager as Capsule;
+    use App\Models\Job;
+    
+    $capsule = new Capsule;
+    
 
-  
-
+    $capsule->addConnection([
+        'driver'    => 'mysql',
+        'host'      => 'localhost',
+        'database'  => 'cursophp',
+        'username'  => 'root',
+        'password'  => 'root',
+        'charset'   => 'utf8',
+        'collation' => 'utf8_unicode_ci',
+        'prefix'    => '',
+    ]);
+    $capsule->setAsGlobal();//tenerla global
+    $capsule->bootEloquent();//inicializar el orm
+    require_once 'jobs.php';
   
 ?>
 
