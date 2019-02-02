@@ -1,24 +1,6 @@
 <?php
-    use Illuminate\Database\Capsule\Manager as Capsule;
-    use App\Models\Job;
-    require_once 'vendor/autoload.php';
-    $capsule = new Capsule;
     
-
-    $capsule->addConnection([
-        'driver'    => 'mysql',
-        'host'      => 'localhost',
-        'database'  => 'cursophp',
-        'username'  => 'root',
-        'password'  => 'root',
-        'charset'   => 'utf8',
-        'collation' => 'utf8_unicode_ci',
-        'prefix'    => '',
-    ]);
-
-    $capsule->setAsGlobal();//tenerla global
-    $capsule->bootEloquent();//inicializar el orm
-
+    use App\Models\Job;
     if(!empty($_POST)){
         $job = new Job();
         $job->title = $_POST['title'];
