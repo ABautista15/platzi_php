@@ -1,1 +1,4 @@
 POO-PHP
+
+psr4 - autoload
+psr7 - routing - rquests
