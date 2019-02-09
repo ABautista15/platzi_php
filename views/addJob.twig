@@ -1,13 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Add Job</title>
-</head>
-<body>
+{% extends "layout.twig" %}
+
+{% block content %}
     <h1>Add Job</h1>
+    <div class="alert alert-primary" role="alert">
+        {{ responseMessage }}
+    </div>
+
     <form action="../jobs/add" method="POST">
         <label for="">Title</label>
         <input type="text" name="title">
@@ -18,5 +16,4 @@
         <button type="submit">Save</button>
         
     </form>
-</body>
-</html>
+{% endblock %}
