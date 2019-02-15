@@ -14,6 +14,13 @@
                  // true
                 try {
                     $jobValidator->assert($postData);
+
+                    $files = $request->getUploadedFiles();
+                    $logo = $files['logo'];
+                    if($logo->getError() == UPLOAD_ERR_OK){
+                        $fileName = $logo->getClientFilename();
+                        $logo->moveTo("uploads/$fileName");
+                    }
                     $job = new Job();
                     $job->title = $postData['title'];
                     $job->description = $postData['description'];
@@ -21,7 +28,7 @@
                     $job->months = 2;
                     $job->save();
 
-                    $responseMessage = 'Saved';
+                    // $responseMessage = 'Saved';
                 } catch (\Exception $e) {
                     $responseMessage = $e->getMessage();
                 }

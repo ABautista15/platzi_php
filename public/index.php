@@ -63,11 +63,30 @@
         'action' => 'addJobAction'
     ]);
 
+    $map->get('addUsers', '/platzi_php/users/add', [
+        'controller' => 'App\Controllers\UsersController',
+        'action' => 'getAddUser'
+    ]);
+
     $map->post('saveJobs', '/platzi_php/jobs/add', [
         'controller' => 'App\Controllers\JobsController',
         'action' => 'addJobAction'
     ]);
 
+    $map->post('saveUsers', '/platzi_php/users/save', [
+        'controller' => 'App\Controllers\UsersController',
+        'action' => 'postSaveUser'
+    ]);
+
+    $map->get('loginForm', '/platzi_php/login', [
+        'controller' => 'App\Controllers\AuthController',
+        'action' => 'getLogin'
+    ]);
+
+    $map->post('auth', '/platzi_php/auth', [
+        'controller' => 'App\Controllers\AuthController',
+        'action' => 'postLogin'
+    ]);
     $matcher = $routerContainer->getMatcher();
 
     $route = $matcher->match($request);
@@ -81,5 +100,12 @@
         $controller = new $controller;
         $response = $controller->$action($request);
         
+
+        foreach($response->getHeaders() as $name => $values){
+            foreach($values as $value){
+                header(sprintf('%s: %s', $name, $value), false);
+            }
+        }
+        http_response_code($response->getStatusCode());
         echo $response->getBody();
     }
