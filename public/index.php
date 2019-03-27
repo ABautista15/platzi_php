@@ -5,6 +5,8 @@
 
     require_once '../vendor/autoload.php';
 
+    session_start();
+
     use Illuminate\Database\Capsule\Manager as Capsule;
     use Aura\Router\RouterContainer;
     // use App\Models\Job;
@@ -67,6 +69,12 @@
         'controller' => 'App\Controllers\UsersController',
         'action' => 'getAddUser'
     ]);
+    
+    $map->get('admin', '/platzi_php/admin', [
+        'controller' => 'App\Controllers\AdminController',
+        'action' => 'getIndex',
+        'auth' => true
+    ]);
 
     $map->post('saveJobs', '/platzi_php/jobs/add', [
         'controller' => 'App\Controllers\JobsController',
@@ -83,6 +91,11 @@
         'action' => 'getLogin'
     ]);
 
+    $map->get('logout', '/platzi_php/logout', [
+        'controller' => 'App\Controllers\AuthController',
+        'action' => 'getLogout'
+    ]);
+
     $map->post('auth', '/platzi_php/auth', [
         'controller' => 'App\Controllers\AuthController',
         'action' => 'postLogin'
@@ -96,6 +109,13 @@
     }else{
         $controller = $route->handler['controller'];
         $action = $route->handler['action'];
+        $needsAuth = $route->handler['auth'] ?? false;
+        $sessionUserId = $_SESSION['userId'] ?? null;
+
+        if($needsAuth && !$sessionUserId){
+            $controller = 'App\Controllers\AuthController';
+            $action = 'getLogin';
+        }
 
         $controller = new $controller;
         $response = $controller->$action($request);
