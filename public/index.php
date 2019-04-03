@@ -18,8 +18,8 @@
         'driver'    => 'mysql',
         'host'      => 'localhost',
         'database'  => 'cursophp',
-        'username'  => 'root',
-        'password'  => 'root',
+        'username'  => 'homestead',
+        'password'  => 'secret',
         'charset'   => 'utf8',
         'collation' => 'utf8_unicode_ci',
         'prefix'    => '',
@@ -38,65 +38,48 @@
     $routerContainer = new RouterContainer();
     $map = $routerContainer->getMap();
     
-  
-    
-    function printJob($job){
-      
-        echo '<li class="work-position">';
-        echo '<h5>'.$job->title.'</h5>';
-        echo '<p>'.$job->description.'</p>';
-        
-        echo '<strong>Achievements:</strong>';
-        echo '<ul>';
-        echo '<li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>';
-        echo '<li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>';
-        echo '<li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>';
-        echo '</ul>';
-        echo '</li>';
-      
-    }
-    $map->get('index', '/platzi_php/', [
+    $map->get('index', '/', [
         'controller' => 'App\Controllers\IndexController',
         'action' => 'indexAction'
     ]);
 
-    $map->get('addJobs', '/platzi_php/jobs/add', [
+    $map->get('addJobs', '/jobs/add', [
         'controller' => 'App\Controllers\JobsController',
         'action' => 'addJobAction'
     ]);
 
-    $map->get('addUsers', '/platzi_php/users/add', [
+    $map->get('addUsers', '/users/add', [
         'controller' => 'App\Controllers\UsersController',
         'action' => 'getAddUser'
     ]);
     
-    $map->get('admin', '/platzi_php/admin', [
+    $map->get('admin', '/admin', [
         'controller' => 'App\Controllers\AdminController',
         'action' => 'getIndex',
         'auth' => true
     ]);
 
-    $map->post('saveJobs', '/platzi_php/jobs/add', [
+    $map->post('saveJobs', '/jobs/add', [
         'controller' => 'App\Controllers\JobsController',
         'action' => 'addJobAction'
     ]);
 
-    $map->post('saveUsers', '/platzi_php/users/save', [
+    $map->post('saveUsers', '/users/save', [
         'controller' => 'App\Controllers\UsersController',
         'action' => 'postSaveUser'
     ]);
 
-    $map->get('loginForm', '/platzi_php/login', [
+    $map->get('loginForm', '/login', [
         'controller' => 'App\Controllers\AuthController',
         'action' => 'getLogin'
     ]);
 
-    $map->get('logout', '/platzi_php/logout', [
+    $map->get('logout', '/logout', [
         'controller' => 'App\Controllers\AuthController',
         'action' => 'getLogout'
     ]);
 
-    $map->post('auth', '/platzi_php/auth', [
+    $map->post('auth', '/auth', [
         'controller' => 'App\Controllers\AuthController',
         'action' => 'postLogin'
     ]);
