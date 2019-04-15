@@ -2,3 +2,4 @@ vendor/
 POO-PHP.txt
 composer.lock
 style.css
+.gitignore

@@ -1,23 +1,27 @@
 {% extends "layout.twig" %}
 
 {% block content %}
-    <h1>Add User</h1>
-    <div class="alert alert-primary" role="alert">
-        {{ responseMessage }}
-    </div>
+    <div class="login-box">
+        <div class="login">
+        <img src="./images/logo.png"/>
+            <h3>UNIQUE</h1>
+            {% if responseMessage %}
+                <div class="alert alert-primary" role="alert">
+                    {{ responseMessage }}
+                </div>
+            {% endif %}
+            <form action="./auth" method="POST">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="email" placeholder="Usuario o Correo" autocomplete="off">
+                </div>
+                
+                <div class="form-group">
+                    <input type="password" class="form-control" name="password" placeholder="Contraseña" autocomplete="off">
+                </div>
 
-    <form action="./auth" method="POST">
-        <div class="form-group">
-            <label for="">Email</label>
-            <input type="text" class="form-control" name="email">
+                <button type="submit" class="form-control btn btn-magenta">Login</button>
+                
+            </form>
         </div>
-        
-        <div class="form-group">
-            <label for="">Password</label>
-            <input type="password" class="form-control" name="password"><br>
-        </div>
-        
-        <button type="submit" class="btn btn-primary">Login</button>
-        
-    </form>
+    </div>  
 {% endblock %}

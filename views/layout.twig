@@ -1,20 +1,37 @@
 <!DOCTYPE html>
-<!-- saved from url=(0115)https://static.platzi.com/media/tmp/class-files/git/curso-introduccion-php/curso-introduccion-php-master/index.html -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html lang="en">
+  <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <!-- Required meta tags -->
   
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./css/styles.css">
 
   <title>Resume</title>
 </head>
 
 <body>
-  <div class="container">
-    {% block content %}{% endblock %}
+  <div class="app">
+    <header class="header" id="header">
+      
+    </header>
+    <aside class="sidebar" id="sidebar">
+      <nav>
+        <ul>
+          <li><a>Incidencias</a></li>
+          <li><a>Nueva Reserva</a></li>
+          <li><a>Catalogos</a></li>
+          <li><a>Agendas</a></li>
+        </ul>
+      </nav>
+    </aside>
+    <section class="main">
+      {% block content %}{% endblock %}
+    </section>
+    
   </div>
 
   <!-- Optional JavaScript -->

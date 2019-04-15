@@ -56,7 +56,6 @@
     $map->get('admin', '/admin', [
         'controller' => 'App\Controllers\AdminController',
         'action' => 'getIndex',
-        'auth' => true
     ]);
 
     $map->post('saveJobs', '/jobs/add', [
